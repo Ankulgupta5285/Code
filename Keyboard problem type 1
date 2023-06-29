@@ -1,0 +1,31 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+void subset(vector<string> &ans,string digit,string temp,int idx,string mapping[]){
+	if(idx>=digit.length()){
+		ans.push_back(temp);
+		return ;
+	}
+	int number=digit[idx]-'0';
+	string value=mapping[number];
+	for(int i=0;i<value.length();i++){
+		temp.push_back(value[i]);
+		subset(ans,digit, temp,idx+1,mapping);
+		temp.pop_back();
+		    }
+	
+	}
+int main(){ 
+string digit;
+cin>>digit;
+string mapping[10]={" "," ","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+vector<string> ans;
+string temp;
+subset(ans,digit,temp,0,mapping);
+for(int i=0;i<ans.size();i++){
+	cout<<ans[i];
+	cout<<endl;
+}
+return 0;
+}
+ 
