@@ -1,1 +1,19 @@
-
+#include<iostream>
+using namespace std;
+void tower(int n,char l,char r ,char m){
+	if(n==0) return;
+	tower(n-1,l,m,r);
+	cout<<"move rod from "<<l<<"  to  "<<r;
+	cout<<endl;
+	tower(n-1,m,r,l);
+	;
+};
+int main(){
+	int n;
+	cin>>n;
+   char left='L';
+   char right='R';
+   char middle='M';
+	tower(n,left,right,middle);
+	return 0;
+}
