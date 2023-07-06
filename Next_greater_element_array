@@ -1,0 +1,30 @@
+#include<iostream>
+#include<stack>
+#include<vector>
+using namespace std;
+vector<int> nge(vector<int> &a){
+	stack<int> st;
+	int n=a.size();
+	vector<int> output(n,-1);
+	st.push(0);
+	for(int i=1;i<a.size();i++){
+		while (st.size()>0 and a[i]>a[st.top()] ){
+			output[st.top()]=a[i];
+			st.pop();
+			}
+			st.push(i);
+		}
+	
+	return output;
+	
+	
+	}
+int main (){
+	vector<int> a={1,4,9,7,5,8,3,9,2};
+	vector<int> ans=nge(a);
+	for(int i=0;i<ans.size();i++){
+		cout<<ans[i]<<" ";
+		}
+	
+return 0;	
+	}
