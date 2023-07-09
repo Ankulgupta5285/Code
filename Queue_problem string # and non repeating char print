@@ -1,0 +1,37 @@
+#include<iostream>
+#include<queue>
+#include<vector>
+using namespace std;
+void func(string s,vector<char> &ans){
+	vector<int> map(180,0);
+	queue<char> q;
+	for(int i=0; i<s.length();i++){
+		char t=s[i];
+		int x=int(t);
+		map[x]++;
+		q.push(t);
+		while(q.size()>0){
+			if(map[int(q.front())]>1){
+				q.pop();
+			}
+			else{
+				ans.push_back(q.front());
+				break;
+				}
+		}
+		if(q.size()==0){
+			ans.push_back('#');
+		}
+		}
+}
+
+int main(){
+   string s;
+   cin>>s;
+   vector<char> ans;
+   func(s,ans);
+   for(int i=0;i<ans.size();i++){
+   	cout<<ans[i];
+   	}
+	return 0;
+}
