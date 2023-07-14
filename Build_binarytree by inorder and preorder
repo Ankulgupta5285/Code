@@ -1,0 +1,74 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+class node{
+	public:
+	int data;
+	node * left;
+	node * right;
+	node(int data){
+		this->data=data;
+		this->left=NULL;
+		this->right=NULL;
+		}
+};
+int position(vector<int> a,int b){
+	for(int i=0;i<a.size();i++){
+		if(a[i]==b){
+		return i;	
+			}
+		}
+	}
+	node * buildtree(vector<int> pre,vector<int> ino){
+	if(pre.size()==0 && ino.size()==0){
+		return NULL;
+		}	
+		node *root=new node (pre[0]);
+		vector<int> lino;
+		vector<int> lpre;
+		vector<int> rino;
+		vector<int> rpre;
+		int p=position(ino,pre[0]);
+		for(int i=0;i<p;i++){
+			lino.push_back(ino[i]);
+			}
+			int k=lino.size();
+			for(int l=1;l<k+1;l++){
+				lpre.push_back(pre[l]);
+				}
+				int m=ino.size();
+				if(k+2<=m){
+					for(int t=k+1;t<m;t++){
+						rino.push_back(ino[t]);
+						rpre.push_back(pre[t]);
+						}
+					}
+					root->left=buildtree(lpre,lino);
+					root->right=buildtree(rpre,rino);
+					return root;
+		
+		}
+		void postorder(node* root) {
+    //base case
+    if(root == NULL) {
+        return ;
+    }
+
+    postorder(root->left);
+    postorder(root->right);
+    cout << root-> data << " ";
+
+}
+	
+	
+	
+	
+int main(){
+vector<int> pre={0,1,3,4,2,5};
+vector<int> ino={3,1,4,0,5,2};
+ node *root=buildtree(pre,ino);
+ postorder(root);
+	
+	
+	return 0;
+	}
